@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.GoogleMapsProject" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/tp_primary</item>
+        <item name="colorOnPrimary">@color/tp_on_primary</item>
+        <item name="colorPrimaryContainer">@color/tp_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/tp_on_primary_container</item>
+        <item name="colorSecondary">@color/tp_secondary</item>
+        <item name="colorOnSecondary">@color/tp_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/tp_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/tp_on_secondary_container</item>
+        <item name="colorSurface">@color/tp_surface</item>
+        <item name="colorSurfaceContainer">@color/tp_surface_container</item>
+        <item name="colorSurfaceContainerHigh">@color/tp_surface_container_high</item>
+        <item name="colorOnSurface">@color/tp_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/tp_on_surface_variant</item>
+        <item name="colorOutline">@color/tp_outline</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.GoogleMapsProject" parent="Base.Theme.GoogleMapsProject" />
+</resources>

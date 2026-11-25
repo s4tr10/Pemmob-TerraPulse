@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.GoogleMapsProject" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#2DD4BF</item>
+        <item name="colorOnPrimary">#042F2E</item>
+        <item name="colorPrimaryContainer">#115E59</item>
+        <item name="colorOnPrimaryContainer">#CCFBF1</item>
+        <item name="colorSecondary">#38BDF8</item>
+        <item name="colorOnSecondary">#082F49</item>
+        <item name="colorSecondaryContainer">#0C4A6E</item>
+        <item name="colorOnSecondaryContainer">#E0F2FE</item>
+        <item name="colorSurface">#0B1120</item>
+        <item name="colorSurfaceContainer">#1E293B</item>
+        <item name="colorSurfaceContainerHigh">#334155</item>
+        <item name="colorOnSurface">#F8FAFC</item>
+        <item name="colorOnSurfaceVariant">#94A3B8</item>
+        <item name="colorOutline">#334155</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

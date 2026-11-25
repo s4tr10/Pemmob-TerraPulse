@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Full-Bleed MapView -->
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Top Floating Bar: Live GPS Telemetry Pill + Interactive Compass -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topHudContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardGpsPill"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="?attr/colorSurfaceContainer"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="6dp"
+            app:strokeColor="?attr/colorOutline"
+            app:strokeWidth="0.75dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="12dp"
+                android:paddingEnd="14dp">
+
+                <View
+                    android:id="@+id/viewGpsStatusDot"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/bg_status_dot" />
+
+                <TextView
+                    android:id="@+id/tvGpsPillSummary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/gps_searching"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvGpsPillSpeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="12sp"
+                    tools:text="· 0 km/j" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCompass"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Reset kompas ke Utara"
+            app:cardBackgroundColor="?attr/colorSurfaceContainer"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="6dp"
+            app:strokeColor="?attr/colorOutline"
+            app:strokeWidth="0.75dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/ivCompassNeedle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_explore_compass" />
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Bottom Anchor Container for Morphing State Panels -->
+    <FrameLayout
+        android:id="@+id/bottomPanelHost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include
+            android:id="@+id/panelExploreDock"
+            layout="@layout/panel_explore_dock"
+            android:visibility="visible" />
+
+        <include
+            android:id="@+id/panelPlaceSheet"
+            layout="@layout/panel_place_sheet"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/panelRoutePreview"
+            layout="@layout/panel_route_preview"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <!-- Mid-Right Floating Map Controls -->
+    <LinearLayout
+        android:id="@+id/rightControlsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="end"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/bottomPanelHost"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Layer Switcher -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnLayerPicker"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="?attr/colorSurfaceContainer"
+            app:cardCornerRadius="23dp"
+            app:cardElevation="6dp"
+            app:strokeColor="?attr/colorOutline"
+            app:strokeWidth="0.75dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_layers"
+                app:tint="?attr/colorOnSurface" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Zoom +/- Pill -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardZoomControls"
+            android:layout_width="46dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="?attr/colorSurfaceContainer"
+            app:cardCornerRadius="23dp"
+            app:cardElevation="6dp"
+            app:strokeColor="?attr/colorOutline"
+            app:strokeWidth="0.75dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/btnZoomIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="28dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="?attr/colorOutline" />
+
+                <TextView
+                    android:id="@+id/btnZoomOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="−"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 3-State Camera / My Location Button -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnMyLocation"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="?attr/colorSurfaceContainer"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="8dp"
+            app:strokeColor="?attr/colorPrimary"
+            app:strokeWidth="1.2dp">
+
+            <ImageView
+                android:id="@+id/ivMyLocationIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_my_location"
+                app:tint="?attr/colorPrimary" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <!-- Active Navigation HUD Overlay -->
+    <include
+        android:id="@+id/panelNavigationHud"
+        layout="@layout/panel_navigation_hud"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Search Overlay -->
+    <include
+        android:id="@+id/panelSearchOverlay"
+        layout="@layout/panel_search_overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

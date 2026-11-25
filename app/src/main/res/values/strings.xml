@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TerraPulse</string>
+    <string name="search_hint">Cari lokasi, jalan, atau tempat...</string>
+    <string name="gps_searching">Mencari GPS…</string>
+    <string name="gps_disabled">GPS Nonaktif</string>
+    <string name="gps_no_permission">Izin GPS</string>
+    <string name="btn_view_route">Lihat Rute</string>
+    <string name="btn_start_navigation">Mulai Navigasi</string>
+    <string name="btn_simulate_demo">Simulasi Demo</string>
+    <string name="btn_stop_navigation">Selesai</string>
+    <string name="btn_recenter">Pusatkan</string>
+    <string name="label_favorites">Favorit</string>
+    <string name="label_recent_searches">Pencarian Terakhir</string>
+    <string name="label_clear_recent">Hapus</string>
+</resources>

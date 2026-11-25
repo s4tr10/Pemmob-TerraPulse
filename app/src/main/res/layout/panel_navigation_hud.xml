@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navHudRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Top High-Contrast Maneuver Banner -->
+    <LinearLayout
+        android:id="@+id/navTopContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardManeuverBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/tp_hud_bg"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="10dp"
+            app:strokeColor="@color/tp_hud_accent"
+            app:strokeWidth="1.2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <!-- Simulation Status Strip -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/layoutSimControls"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/tp_hud_surface"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="6dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="MODE SIMULASI DEMO"
+                            android:textColor="@color/tp_hud_accent"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnSimSpeed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="3dp"
+                            android:text="1x"
+                            android:textColor="@color/tp_hud_text"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/btnSimPausePlay"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Jeda atau lanjutkan simulasi"
+                            android:src="@drawable/ic_pause"
+                            app:tint="@color/tp_hud_accent" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Active Maneuver Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        app:cardBackgroundColor="@color/tp_hud_surface"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
+
+                        <ImageView
+                            android:id="@+id/ivNavManeuverIcon"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_turn_right"
+                            app:tint="@color/tp_hud_accent" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvNavManeuverDistance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/tp_hud_accent"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            tools:text="150 m" />
+
+                        <TextView
+                            android:id="@+id/tvNavInstruction"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:textColor="@color/tp_hud_text"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:text="Belok kanan ke Jl. Arif Rahman Hakim" />
+
+                        <TextView
+                            android:id="@+id/tvNavRerouting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Menghitung ulang rute..."
+                            android:textColor="@color/tp_gps_searching"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/btnNavToggleVoice"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Suara navigasi"
+                        android:src="@drawable/ic_volume_on"
+                        app:tint="@color/tp_hud_text" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <!-- Detached Camera Recenter Pill -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNavRecenter"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/btn_recenter"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:cornerRadius="22dp"
+        app:icon="@drawable/ic_my_location"
+        app:layout_constraintBottom_toTopOf="@id/navBottomContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+    <!-- Bottom Telemetry & Stop Bar -->
+    <FrameLayout
+        android:id="@+id/navBottomContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/tp_hud_bg"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="10dp"
+            app:strokeColor="@color/tp_hud_surface"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="12dp">
+
+                <!-- Speedometer -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="68dp"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/tp_hud_surface"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingVertical="6dp">
+
+                        <TextView
+                            android:id="@+id/tvNavSpeedValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/tp_hud_accent"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            tools:text="45" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="km/j"
+                            android:textColor="@color/tp_hud_text_muted"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Remaining ETA & Distance -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNavRemainingEta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/tp_hud_text"
+                        android:textSize="19sp"
+                        android:textStyle="bold"
+                        tools:text="11 mnt" />
+
+                    <TextView
+                        android:id="@+id/tvNavRemainingDist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/tp_hud_text_muted"
+                        android:textSize="13sp"
+                        tools:text="3,8 km tersisa" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStopNavigation"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="46dp"
+                    android:backgroundTint="@color/tp_danger"
+                    android:text="@string/btn_stop_navigation"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:cornerRadius="14dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
